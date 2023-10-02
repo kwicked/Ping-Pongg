@@ -39,13 +39,37 @@ class Player(GameSprite):
 ball = GameSprite('ball pp.jpg', 280,200, 10,105,75)   
 pl1 = Player('finish.png', 0, 300, 10,30,100)
 pl2 = Player('finish.png', 670, 300, 10,30,100)
+finish = False
+
+speed_x = 3
+speed_y = 3
+
+font.init()
+font1 = font.Font(None, 35)
+lose1 = font1.render('ИГРОК 1 ПРОИГРАЛ', True, (180, 0, 0))
+lose2 = font1.render('ИГРОК 2 ПРОИГРАЛ', True, (180, 0, 0))
+
 while run:
     for e in event.get():
         if e.type == QUIT:
             run = False
+    
+
         
     window.blit(background, (0,0))
-
+    if finish != True:
+        ball.rect.x += speed_x
+        ball.rect.y += speed_y
+    if ball.rect.y > win_height-50 or ball.rect.y < 0:
+        speed_y *= -1
+    if sprite.collide_rect(pl1, ball) or sprite.collide_rect(pl2, ball):
+        speed_x *= -1
+    if ball.rect.x < 0:
+        finish = True
+        window.blit(lose1, (200, 200))
+    if ball.rect.x > win_width-80:
+        finish = True
+        window.blit(lose2, (200, 200))
     ball.reset()
     pl1.update_l()
     pl1.reset()
