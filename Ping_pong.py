@@ -36,18 +36,18 @@ class Player(GameSprite):
         if keys[K_DOWN] and self.rect.y < win_height - 80:
             self.rect.y += self.speed
 
-ball = GameSprite('ball pp.jpg', 280,200, 10,105,75)   
-pl1 = Player('finish.png', 0, 300, 10,30,100)
-pl2 = Player('finish.png', 670, 300, 10,30,100)
+ball = GameSprite('ball pp.png', 280,200, 10,75,75)   
+pl1 = Player('finish.png', 0, 300, 10,30,150)
+pl2 = Player('finish.png', 670, 300, 10,30,150)
 finish = False
 
 speed_x = 3
 speed_y = 3
 
 font.init()
-font1 = font.Font(None, 35)
-lose1 = font1.render('ИГРОК 1 ПРОИГРАЛ', True, (180, 0, 0))
-lose2 = font1.render('ИГРОК 2 ПРОИГРАЛ', True, (180, 0, 0))
+font1 = font.Font(None, 50)
+lose1 = font1.render('ИГРОК 1 ПРОИГРАЛ', True, (180, 200, 0))
+lose2 = font1.render('ИГРОК 2 ПРОИГРАЛ', True, (180, 200, 0))
 
 while run:
     for e in event.get():
@@ -76,4 +76,4 @@ while run:
     pl2.update_r()
     pl2.reset()
     display.update()
-    time.delay(50)
+    time.delay(30)
